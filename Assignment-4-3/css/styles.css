@@ -1,0 +1,32 @@
+.container-fluid {background: #bbbbaa;}
+
+.navbar-nav {margin-top: 0px; margin-bottom: 0px; }
+
+#collapsable-nav-menu ul { background-color: #aaaaaa;}
+
+.nav li.nav-divider {margin: 0px;}
+
+.navbar-default .navbar-toggle {border: 1px solid #888;}
+
+.navbar-default .navbar-toggle:hover {	
+	border: 1px solid #e5e5e5;
+	background: transparent;
+}
+.navbar-default .navbar-toggle:hover .icon-bar {background-color: #e5e5e5;}
+
+.navbar-default .navbar-toggle:focus {
+	border: 1px solid #e5e5e5;
+	background: transparent;
+}
+.navbar-default .navbar-toggle:focus .icon-bar {background-color: #e5e5e5;}	
+
+.container-fluid.content  {
+	margin: 15px; 	
+	background: transparent;
+}
+.container-fluid .section {
+	background: #bbbbaa;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	min-height: 1000px;
+}
