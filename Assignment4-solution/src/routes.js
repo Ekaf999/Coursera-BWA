@@ -10,10 +10,10 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
     .state('home',
            {url: '/',
-            templateUrl: '/views/home.html'})
+            templateUrl: 'views/home.html'})
     .state('categories',
            {url: "/categories",
-            templateUrl: "/views/categories.html",
+            templateUrl: "views/categories.html",
             controller: 'CategoriesController as CategoriesController',
             resolve: {categoriesList: ['MenuDataService',function(MenuDataService){
                                           return MenuDataService.getAllCategories();}]}
