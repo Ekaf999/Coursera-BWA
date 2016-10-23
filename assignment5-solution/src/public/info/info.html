@@ -1,0 +1,36 @@
+<h2 ng-hide="Info.user.email" class="container">
+  <br><br>Not Signed Up Yet. <a ui-sref="public.sign-up-form">Sign up Now!</a><br><br>
+</h2>
+<div ng-if="Info.user.email" class="container"><!--container-->
+ <div class="row"><!--outer row-->
+  <div class="col-md-6"><!--left pane-->
+    <div class="row">
+      <div class="col-md-12"><legend>Your favorite dish</legend></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12"><menu-item menu-item="Info.FavoriteMenuItem"></menu-item></div>
+    </div>
+  </div><!--left pane-->
+<div class="col-md-6"><!--right pane-->
+    <div class="row">
+      <div class="col-md-12"><legend>Your data</legend></div>
+    </div>
+    <div class="row">
+      <label class="col-md-3">E-mail:</label>
+      <div class="col-md-5">{{Info.user.email}}</div>
+    </div>
+    <div class="row">
+      <label class="col-md-3">First name:</label>
+      <div class="col-md-5">{{Info.user.firstName | na : '--- not provided ---'}}</div>
+    </div>
+    <div class="row">
+      <label class="col-md-3">Last name:</label>
+      <div class="col-md-5">{{Info.user.lastName | na : '--- not provided ---'}}</div>
+    </div>
+    <div class="row">
+      <label class="col-md-3">Phone:</label>
+      <div class="col-md-5">{{Info.user.phone | na : '--- not provided ---'}}</div>
+    </div>
+</div><!--right pane-->
+</div><!--outer row-->
+</div><!--container-->

@@ -1,0 +1,56 @@
+<div class="container">
+<form name="signUp" novalidate>
+  <fieldset>
+    <legend>Sign up for our free newsletter</legend>
+    <div class="row">
+      <input class="col-md-3" type="text" name="favoriteDish" placeholder="*Favorite dish"
+             required ng-model-options="{updateOn: 'change blur'}" ng-model="SignUpForm.user.favoriteDish"
+             ui-validate-async="{FavoriteDishExists: 'SignUpForm.FavoriteDishExists($value)'}">
+      <div class="col-md-8" ng-if="signUp.favoriteDish.$error.required && signUp.favoriteDish.$touched">
+                  Please share with us the code of your favorite dish! See codes on our <a ui-sref="public.menu">menu!</a>
+      </div>
+      <div class="col-md-8" ng-if="signUp.favoriteDish.$error.FavoriteDishExists && signUp.favoriteDish.$touched">
+                  No such menu number exists! See codes on our <a ui-sref="public.menu">menu!</a>
+      </div>
+    </div>
+    <div class="row">
+      <input class="col-md-3" type="email" name="email" placeholder="*email@ddress" required
+             ng-model="SignUpForm.user.email">
+      <div class="col-md-6" ng-if="signUp.email.$invalid && signUp.email.$touched">
+                  Please enter a valid email address!
+      </div>
+    </div>
+    <div class="row">
+      <input class="col-md-3" type="text" name="firstName" placeholder="First name (2-20 characters)"
+             ng-minlength="2" ng-maxlength="20" ng-model="SignUpForm.user.firstName">
+      <div class="col-md-6" ng-if="signUp.firstName.$error.minlength && signUp.firstName.$touched">
+                      Please enter at least two characters or leave the field empty!
+      </div>
+      <div class="col-md-6" ng-if="signUp.firstName.$error.maxlength">
+                      Please enter at most twenty characters!
+      </div>
+    </div>
+    <div class="row">
+      <input class="col-md-3" type="text" name="lastName" placeholder="Last name (2-20 characters)"
+             ng-minlength="2" ng-maxlength="20"  ng-model="SignUpForm.user.lastName">
+      <div class="col-md-6" ng-if="signUp.lastName.$error.minlength && signUp.lastName.$touched">
+                    Please enter at least two characters or leave the field empty!
+      </div>
+      <div class="col-md-6" ng-if="signUp.lastName.$error.maxlength">
+                   Please enter at most twenty characters!
+      </div>
+    </div>
+    <div class="row">
+      <input class="col-md-3" type="text" name="phone" placeholder="Phone ###-###-####"
+             pattern="(\d{3})-(\d{3})-(\d{4})" ng-model="SignUpForm.user.phone">
+      <div class="col-md-6" ng-if="signUp.phone.$invalid && signUp.phone.$touched">
+                   Please enter a valid phone number or leave the field empty!
+      </div>
+    </div>
+
+    <button ng-disabled="signUp.$invalid || signUp.$pending" class="btn"
+     ng-click="SignUpForm.submit()">Submit</button>
+    <span ng-if="SignUpForm.completed"> Your information has been saved.</span>
+  </fieldset>
+</form>
+</div>
