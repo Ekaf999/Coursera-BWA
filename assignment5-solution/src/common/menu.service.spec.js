@@ -16,8 +16,7 @@ describe('FavoriteDishExists service function', function() {
     });
   });
 
-  it('shall return a resolved promise if item is on the list; \
-      favoriteMenuItem shall be set to response.data.', function() {
+  it('shall return a resolved promise if item is on the list.', function() {
     var responseData = {"id":1, "short_name":"SOUP", "description":"delicious soup"};
     $httpBackend.when('GET', ApiPath + '/menu_items/SOUP.json')
     .respond(200, responseData);
@@ -28,7 +27,6 @@ describe('FavoriteDishExists service function', function() {
     .catch(function(){status='rejected';})
     .finally(function() {
        expect(status).toBe('resolved');
-       expect(MenuService.getFavoriteMenuItem()).toEqual(responseData)
      });
     //***************************************************
     $httpBackend.flush();
@@ -36,15 +34,13 @@ describe('FavoriteDishExists service function', function() {
     // after flush was called.  (0: pending, 1(or-1): resolved, 2: rejected). See next it()
   });
 
-  it('shall return a rejected promise if item is not on the list; \
-     favoriteMenuItem shall stay unchanged.', function() {
+  it('shall return a rejected promise if item is not on the list.', function() {
     var favoriteMenuItemOld = MenuService.getFavoriteMenuItem();
     $httpBackend.whenGET(ApiPath + '/menu_items/HAMMER.json')
     .respond(500,''); // mock internal server error
     var promise = MenuService.FavoriteDishExists('hammer');
     $httpBackend.flush();
     expect(promise.$$state.status).toBe(2); //2=rejected
-    expect(MenuService.getFavoriteMenuItem()).toEqual(favoriteMenuItemOld)
     });
 
  });
