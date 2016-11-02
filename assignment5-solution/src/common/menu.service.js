@@ -9,6 +9,7 @@ function MenuService($http, ApiPath, $q) {
   var service = this;
   var user = {firstName:null, lastName:null, email:null, phone:null, favoriteDish:null};
   var favoriteMenuItem;
+  var tempFavorite;
 
   service.getCategories = function () {
     return $http.get(ApiPath + '/categories.json').then(function (response) {
@@ -37,18 +38,14 @@ function MenuService($http, ApiPath, $q) {
         }
       }
     }
+    favoriteMenuItem = tempFavorite;
   }
 
   service.FavoriteDishExists = function(short_name) {
-     return $q(function(resolve,reject){
-       $http.get(ApiPath + '/menu_items/' + short_name.toUpperCase() + '.json')
-       .then(function(response){
-         favoriteMenuItem = response.data;
-         resolve();})
-       .catch(function(){reject();});
-    })
+     return $http.get(ApiPath + '/menu_items/' + short_name.toUpperCase() + '.json')
+       .then(function(response){tempFavorite = response.data;});
   };
-
+ 
  service.getFavoriteMenuItem = function () {return favoriteMenuItem;};
 
  function cloneObj(obj) {
